@@ -10,6 +10,8 @@ mochaPhantomJS = require 'gulp-mocha-phantomjs'
 template = require 'gulp-lodash-template'
 coffee = require 'gulp-coffee'
 del = require 'del'
+uglify = require('gulp-uglify')
+buffer = require('vinyl-buffer');
 
 startTime = null
 logger =
@@ -32,7 +34,7 @@ build = (test) ->
   [output, entry, options] = if test
     ['tests.js', './test/index', debug: true]
   else
-    ['html-docx.js', './src/api', standalone: 'html-docx']
+    ['html-docx.min.js', './src/api', standalone: 'html-docx']
 
   bundleMethod = if global.isWatching then watchify else browserify
   bundler = bundleMethod
@@ -46,6 +48,8 @@ build = (test) ->
       .bundle options
       .on 'error', handleErrors
       .pipe vinyl(output)
+      .pipe(buffer())
+      .pipe(uglify())
       .pipe gulp.dest('./build')
       .on 'end', logger.end
 

@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "gulp test-node",
-    "prepublish": "gulp clean; gulp build-node"
+    "prepublish": "gulp clean; gulp build-node",
+    "build": "gulp build"
   },
   "browserify": {
     "transform": [
@@ -18,10 +19,12 @@
     ]
   },
   "author": "Artur Nowak <artur.nowak@evidenceprime.com>",
-  "contributors": [{
-    "name": "Ievgen Martynov",
-    "email": "ievgen.martynov@gmail.com"
-  }],
+  "contributors": [
+    {
+      "name": "Ievgen Martynov",
+      "email": "ievgen.martynov@gmail.com"
+    }
+  ],
   "license": "MIT",
   "devDependencies": {
     "brfs": "^1.1.2",
@@ -45,8 +48,10 @@
     "watchify": "^0.10.2"
   },
   "dependencies": {
+    "gulp-uglify": "^3.0.2",
     "jszip": "^2.3.0",
     "lodash.escape": "^3.0.0",
-    "lodash.merge": "^3.2.0"
+    "lodash.merge": "^3.2.0",
+    "vinyl-buffer": "^1.0.1"
   }
 }
